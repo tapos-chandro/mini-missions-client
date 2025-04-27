@@ -1,3 +1,23 @@
 
+.active{
+
+  color: #05a117;
+  text-decoration: underline;
+  font-weight: 800;
+}
+
+@theme {
+  --breakpoint-3xl: 120rem;
+  --color-primary-color: #05a117;
+  --color-secondary-color:#222126;
+  --color-primary-text:#fff;
+  --color-secondary-text: #5f6160;
+  --color-light: #fff;
+}
+
 @import "tailwindcss";
+
+
 @plugin "daisyui" 
+
+
