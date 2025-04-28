@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="navbar-start">
-                <Link to={'/'} className="text-xl"><img src={logo} className='lg:w-60 w-52 ' alt="" srcset="" /></Link>
+                <Link to={'/'} className="text-xl"><img src={logo} className='lg:w-60 w-52 ' /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
