@@ -15,31 +15,31 @@ const BestWorkers = () => {
             id: 2,
             name: "Brian Smith",
             coins: 1150,
-            image: "/workers/worker2.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
         },
         {
             id: 3,
             name: "Carla Gomez",
             coins: 1100,
-            image: "/workers/worker3.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
         },
         {
             id: 4,
             name: "Daniel Lee",
             coins: 1050,
-            image: "/workers/worker4.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
         },
         {
             id: 5,
             name: "Ella Brown",
             coins: 1000,
-            image: "/workers/worker5.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
         },
         {
             id: 6,
             name: "Frank Wilson",
             coins: 950,
-            image: "/workers/worker6.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
         },
     ];
 

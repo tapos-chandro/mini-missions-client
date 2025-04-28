@@ -3,6 +3,14 @@ import Card from '../../components/Card';
 import SectionTitle from '../../components/SectionTitle';
 
 const AvailableTask = () => {
+
+    const tasks = [
+        {
+            title: "I'll Create, Manage and Optimize your Google Ads PPC Campaign for $35"
+        }
+    ]
+
+
     return (
         <div>
             <SectionTitle title="Available Task" />

@@ -19,7 +19,7 @@ const Navbar = () => {
     return (
         <div className="navbar">
             <div className="navbar-start">
-                <Link to={'/'} className="text-xl"><img src={logo} className='lg:w-60 w-52 ' /></Link>
+                <Link to={'/'} className="text-xl"><img src={logo} className='lg:w-60 w-52' /></Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -33,7 +33,7 @@ const Navbar = () => {
                         {/* Page content here */}
                         <label htmlFor="my-drawer-4" className="drawer-button btn bg-primary-color "><IoMenu  className='text-xl text-primary-text '/></label>
                     </div>
-                    <div className="drawer-side">
+                    <div className="drawer-side z-50">
                         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                             <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay "><RxCross2 className='text-red-600 text-2xl mb-5 border rounded-full p-1' /></label>
                             {/* Sidebar content here */}

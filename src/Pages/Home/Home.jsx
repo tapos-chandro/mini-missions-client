@@ -1,8 +1,9 @@
 import React from 'react';
 import Banner from '../../components/Banner';
-import SectionTitle from '../../components/SectionTitle';
 import AvailableTask from './AvailableTask';
 import BestWorkers from './BestWorkers';
+import Testimonials from './Testimonials';
+import Faq from './Faq';
 
 const Home = () => {
     return (
@@ -10,6 +11,8 @@ const Home = () => {
             <Banner />
             <BestWorkers/>
             <AvailableTask />
+            <Faq/>
+            <Testimonials/>
         </div>
     );
 };

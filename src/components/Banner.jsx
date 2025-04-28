@@ -43,12 +43,10 @@ const Banner = () => {
         delay: 5500,
         disableOnInteraction: false,
       }}
-      pagination={{
-        clickable: true,
-      }}
+
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper " style={{zIndex: -1}}
+      className="mySwiper"
     >
       {banners.map((banner) => (
         <SwiperSlide key={banner?.id} className="relative mb-5">
