@@ -40,10 +40,11 @@ const Testimonials = () => {
                         disableOnInteraction: false,
                     }}
                     className="max-w-2xl mx-auto"
+                    
                 >
                     {testimonials.map((testimonial) => (
                         <SwiperSlide key={testimonial.id}>
-                            <div className=" p-6 flex flex-col items-center">
+                            <div className=" p-6 flex flex-col items-center border-2 py-16 rounded-2xl border-primary-color ">
                                 <img
                                     src={testimonial.image}
                                     alt={testimonial.name}

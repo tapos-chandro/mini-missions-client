@@ -3,7 +3,7 @@ import React from 'react';
 const Card = () => {
     return (
         <div>
-            <div className="card bg-base-100  shadow-sm">
+            <div className="card bg-base-100  shadow-sm border border-primary-color">
                 <figure>
                     <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s"

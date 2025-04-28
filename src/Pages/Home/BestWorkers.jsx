@@ -48,11 +48,11 @@ const BestWorkers = () => {
         <div>
             <SectionTitle title="Top Workers 🏆" />
             <div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 pb-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 pb-10 ">
                     {topWorkers.map((worker) => (
                         <div
                             key={worker.id}
-                            className="bg-white shadow-md rounded-lg p-6 flex flex-col items-center hover:shadow-xl transition-all duration-300"
+                            className="bg-white shadow-md rounded-lg  border border-primary-color p-6 flex flex-col items-center hover:shadow-xl transition-all duration-300"
                         >
                             <img
                                 src={worker.image}

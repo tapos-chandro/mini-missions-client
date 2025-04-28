@@ -4,6 +4,7 @@ import AvailableTask from './AvailableTask';
 import BestWorkers from './BestWorkers';
 import Testimonials from './Testimonials';
 import Faq from './Faq';
+import Statistics from './Statistics';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <BestWorkers/>
             <AvailableTask />
             <Faq/>
+            <Statistics/>
             <Testimonials/>
         </div>
     );
