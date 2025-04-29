@@ -13,7 +13,10 @@
   --color-primary-text:#fff;
   --color-secondary-text: #5f6160;
   --color-light: #fff;
+  --button-rounded:'full';
+  --border-radius: 30rem
 }
+
 
 @import "tailwindcss";
 
