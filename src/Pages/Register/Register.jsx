@@ -15,8 +15,8 @@ const Register = () => {
     const [localImage, setLocalImage] = useState('');
     const [imageUrl, setImageUrl] = useState('');
     const navigate = useNavigate();
-    const axiosPublic = useAxiosPublic()
-    const [error, setError] = useState('')
+    const axiosPublic = useAxiosPublic();
+    const [error, setError] = useState('');
 
     const {
         register,
@@ -72,7 +72,7 @@ const Register = () => {
                 inputPlaceholder: "Select role",
                 showCancelButton: true,
                 confirmButtonColor: " #05a117",
-                cancelButtonColor: "red", 
+                cancelButtonColor: "red",
                 inputValidator: (value) => {
 
                     userRole = value
