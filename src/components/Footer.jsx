@@ -5,29 +5,36 @@ import footerLogo from '../../src/assets/images/logo-2.png'
 
 
 const Footer = () => {
+
+    const user = true
+
     return (
         <footer className="text-white py-6">
-            <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4">
+            <div className="container mx-auto grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 justify-between px-4">
 
                 {/* Logo */}
-                <div className="flex items-center space-x-2 mb-4 md:mb-0">
+                <div className="flex lg:items-center justify-center lg:justify-start space-x-2 mb-4 md:mb-0 pt-10">
                     <Link to={"/"} className='flex items-center flex-col text-3xl'>
                         <img src={footerLogo} alt="MiniMissions Logo" className="" /> Mini Missions
                     </Link>
                 </div>
 
-                <div className='flex lg:flex-row my-10 flex-col'>
-                    <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'/'}>Home</NavLink>
-                    <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'/dashboard'}>Dashboard</NavLink>
-                    <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'/coin'}>Available Coin </NavLink>
+                <div className='flex lg:flex-row flex-wrap my-10 flex-col justify-center'>
+                    <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/'}>Home</NavLink>
+                    <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/dashboard'}>Dashboard</NavLink>
+                    <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/coin'}>Available Coin </NavLink>
 
-                    <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'/login'}>Login</NavLink>
-                    <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'/register'}>Register</NavLink>
-                    <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">Join as Developer</NavLink>
+                    {
+                        user ? "" : <>
+                            <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/login'}>Login</NavLink>
+                            <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/register'}>Register</NavLink>
+                        </>
+                    }
+                    <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">Join as Developer</NavLink>
                 </div>
 
                 {/* Social Icons */}
-                <div className="flex space-x-4">
+                <div className="flex lg:justify-end md:justify-end justify-center lg:items-center space-x-4 md:pt-16">
                     <Link to="https://www.linkedin.com/in/tapos-chandro/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
                         <FaLinkedinIn className='text-4xl' />
                     </Link>
@@ -38,7 +45,7 @@ const Footer = () => {
                         <FaGithub className='text-4xl' />
                     </Link>
                 </div>
-               
+
 
             </div>
 

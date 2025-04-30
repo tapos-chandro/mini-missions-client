@@ -53,18 +53,18 @@ const Banner = () => {
           <img
             src={banner.image}
             alt={banner.title}
-            className="w-full object-cover lg:h-[650px] md:h-[500px] h-[300px] "
+            className="w-full object-cover lg:h-[650px] md:h-[450px] h-[300px] "
           />
           <div className=" absolute top-0 h-full flex justify-center flex-col items-center w-full p-5 bg-[#000000a5] ">
             <div className="max-w-4xl text-center space-y-2 ">
               <h2 className="lg:text-6xl font-bold text-xl text-primary-text  ">
                
-                <Typewriter words={[banner.title]} loop={true} cursor  />
+                <Typewriter words={[banner.title]} loop={true} cursor />
               </h2>
-              <p className="text-secondary-text lg:text-xl text-sm ">
+              <p className=" lg:text-xl text-sm text-secondary-text">
                 {banner.description}
               </p>
-              <button className="btn bg-primary-color border-none text-primary-text">See More</button>
+              <button className="btn rounded-full px-6 bg-primary-color border-none text-primary-text">See More</button>
             </div>
           </div>
         </SwiperSlide>

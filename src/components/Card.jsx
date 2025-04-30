@@ -27,7 +27,7 @@ const Card = () => {
                     </h2>
                     <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
                     <div className="card-actions justify-end">
-                        <button className="bg-primary-color border-0 btn btn-primary">Fashion</button>
+                        <button className="bg-primary-color rounded-full px-6 border-0 btn btn-primary">Fashion</button>
                     </div>
                 </div>
             </div>

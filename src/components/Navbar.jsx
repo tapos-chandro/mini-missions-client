@@ -3,12 +3,20 @@ import { IoMenu } from 'react-icons/io5';
 import { RxCross2 } from 'react-icons/rx';
 import { Link, NavLink } from 'react-router-dom';
 import logo from "../../src/assets/images/logo-0.png"
+import { BsCoin } from 'react-icons/bs';
+import useAuth from '../Hooks/useAuth';
+
 
 
 const Navbar = () => {
 
-    const user = true
+    const { user, logOutUser } = useAuth()
 
+
+    const handleLogOutUser = () => {
+        logOutUser()
+
+    }
 
     const navLinks = <>
         <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/'}>Home</NavLink>
@@ -22,10 +30,9 @@ const Navbar = () => {
 
     </>
 
-    console.log(user)
 
     return (
-        <div className="navbar py-5">
+        <div className="navbar py-3 fixed left-0 z-50 bg-primary-text">
             <div className="navbar-start">
                 <Link to={'/'} className="text-xl"><img src={logo} className='lg:w-60 w-52' /></Link>
             </div>
@@ -43,36 +50,53 @@ const Navbar = () => {
                     </div>
                     <div className="drawer-side z-50">
                         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-                            <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay "><RxCross2 className='text-red-600 text-2xl mb-5 border rounded-full p-1' /></label>
+                            <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay "><RxCross2 className='text-primary-color text-2xl mb-5 border rounded-full p-1' /></label>
                             {/* Sidebar content here */}
                             {navLinks}
                             {
                                 user ? <div className=' items-center flex flex-col-reverse gap-3  lg:hidden '>
 
-                                    <Link className="px-2 bg-primary-color border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">Join as Developer</Link>
-                                    <button className='btn  btn-primary bg-primary-color border-none mx-3'> LogOut </button>
-                                    <div className="avatar">
-                                        <div className="w-12 rounded-full">
-                                            <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                                        </div>
+                                    <div className='flex items-center gap-1'>
+                                        <span className='text-xl font-bold text-secondary-color'>10</span> <BsCoin className='text-3xl' />
                                     </div>
-                                </div>: ''
+
+                                    <Link className="px-2 bg-primary-color border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">Join as Developer</Link>
+                                    <button className='btn  btn-primary bg-primary-color border-none mx-3' onClick={handleLogOutUser}> LogOut </button>
+                                    <Link to='/profile'>
+                                        <div className="avatar">
+                                            <div className="w-12 rounded-full">
+                                                <img src={user?.photoURL} referrerPolicy="no-referrer" />
+                                            </div>
+                                        </div>
+                                    </Link>
+                                </div> : ''
                             }
                         </ul>
                     </div>
                 </div>
                 {
-                 user? <div className=' items-center hidden  lg:block'>
-                        <Link className="px-2 bg-primary-color border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">Join as Developer</Link>
-                        <button className='btn  btn-primary bg-primary-color border-none mx-3'> LogOut </button>
-                        <div className="avatar">
-                            <div className="w-12 rounded-full">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    user && <div className=' items-center hidden  lg:block '>
+                        <div className=' flex items-center gap-2'>
+                            <div className='flex items-center gap-1'>
+                                <span className='text-xl font-bold text-secondary-color'>10</span> <BsCoin className='text-3xl' />
                             </div>
-                        </div>
-                    </div>: ''
-                }
+                            <Link to="/profile">
+                                <div className="avatar">
+                                    <div className="w-12 rounded-full">
+                                        <img src={user?.photoURL} referrerPolicy="no-referrer" />
+                                    </div>
+                                </div>
+                            </Link>
+                            <button className='btn mr-2  btn-primary rounded-full bg-primary-color border-none ' onClick={handleLogOutUser}> LogOut </button>
 
+                        </div>
+                    </div>
+                }
+                <Link to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">
+                    <button className=" bg-primary-color border-none hover:border lg:text-md  btn rounded-full px-5 md:hidden  lg:inline-block hidden  text-primary-text" >
+                        Join as Developer
+                    </button>
+                </Link>
             </div>
         </div>
     );
