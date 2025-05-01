@@ -12,6 +12,8 @@ const Navbar = () => {
 
     const { user, logOutUser } = useAuth()
 
+    const role = "admin"
+
 
     const handleLogOutUser = () => {
         logOutUser()
@@ -20,7 +22,7 @@ const Navbar = () => {
 
     const navLinks = <>
         <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/'}>Home</NavLink>
-        <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/dashboard'}>Dashboard</NavLink>
+        <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/dashboard/admin-home'}>Dashboard</NavLink>
         <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/coin'}>Available Coin </NavLink>
         {
             user ? '' : <>

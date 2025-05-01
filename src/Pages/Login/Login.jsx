@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FaArrowLeft } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import { FcGoogle } from 'react-icons/fc';
 
@@ -12,6 +12,8 @@ const Login = () => {
     const [error, setError] = useState('')
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const location = useLocation();
+    
 
 
     const onSubmit = async (data) => {
@@ -21,7 +23,7 @@ const Login = () => {
             const res = await signInUser(data.email, data.password)
 
             if (res.user) {
-                navigate('/')
+                navigate(location?.state?.from?.pathname || "/")
             }
             setError('')
         } catch (error) {
@@ -38,7 +40,7 @@ const Login = () => {
         const res = await signInWithGoogle()
         console.log(res.user)
         if(res.user.email){
-            navigate('/')
+            navigate(location?.state?.from?.pathname || "/")
         }
     }
 

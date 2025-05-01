@@ -1,6 +1,6 @@
 
 import { FaArrowLeft } from 'react-icons/fa';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import useAuth from '../../Hooks/useAuth';
 import { useEffect, useState } from 'react';
@@ -17,6 +17,10 @@ const Register = () => {
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
     const [error, setError] = useState('');
+    const location = useLocation();
+
+
+
 
     const {
         register,
@@ -40,7 +44,7 @@ const Register = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        navigate('/')
+                        navigate(location?.state?.from?.pathname || "/")
 
                     } catch (error) {
                         console.log(error)
@@ -99,7 +103,7 @@ const Register = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    navigate('/')
+                    navigate(location?.state?.from?.pathname || "/")
 
                 } catch (error) {
                     console.log(error)
