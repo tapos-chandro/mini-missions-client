@@ -1,10 +1,20 @@
 import { NavLink} from "react-router-dom";
+import useUserData from "../../Hooks/useUserData";
+import useAuth from "../../Hooks/useAuth";
+import Loading from "../../components/Loading";
 
 
 const SideNav = () => {
 
+    const {user} = useAuth()
+    
+    const [userData] = useUserData()
 
-    const role = 'admin';
+
+    console.log(userData)
+
+
+    const role = userData?.role;
 
     const adminLinks = <>
         <NavLink className="w-full  my-3 py-2 text-center" to={"/dashboard/admin-home"}>Home</NavLink>

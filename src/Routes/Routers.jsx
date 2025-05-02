@@ -11,6 +11,9 @@ import ManageUser from "../Pages/Deshboard/Admin/ManageUser";
 import ManageTask from "../Pages/Deshboard/Admin/ManageTask";
 import WorkerHome from "../Pages/Deshboard/Woarker/WoarkerHome";
 import BuyerHome from "../Pages/Deshboard/Buyer/BuyerHome";
+import AddTask from "../Pages/Deshboard/Buyer/AddTask";
+import MyTask from "../Pages/Deshboard/Buyer/MyTask";
+import PurchasesCoins from "../Pages/Deshboard/Buyer/PurchasesCoins";
 
 
 
@@ -54,28 +57,40 @@ const router = createBrowserRouter([
             // admin relate route 
             {
                 path:"admin-home",
-                element: <AdminHome></AdminHome>,
+                element: <PrivetRoutes> <AdminHome></AdminHome></PrivetRoutes>,
             },
             {
                 path: 'manage-user',
-                element: <ManageUser></ManageUser>,
+                element: <PrivetRoutes><ManageUser></ManageUser></PrivetRoutes>,
             },
             {
                 path: 'manage-task',
-                element: <ManageTask></ManageTask>,
+                element: <PrivetRoutes><ManageTask></ManageTask></PrivetRoutes>,
             },
           
             // worker related route 
 
             {
                 path: 'worker-home',
-                element: <WorkerHome></WorkerHome>
+                element: <PrivetRoutes><WorkerHome></WorkerHome></PrivetRoutes>
             },
 
             // buyer related route 
             {
                 path: 'buyer-home',
-                element: <BuyerHome></BuyerHome>
+                element: <PrivetRoutes><BuyerHome></BuyerHome></PrivetRoutes>
+            },
+            {
+                path: 'my-task',
+                element: <PrivetRoutes><MyTask></MyTask></PrivetRoutes>
+            },
+            {
+                path: 'purchase-coin',
+                element: <PrivetRoutes><PurchasesCoins></PurchasesCoins></PrivetRoutes>
+            },
+            {
+                path: 'add-task',
+                element: <PrivetRoutes><AddTask></AddTask></PrivetRoutes>
             }
             
             

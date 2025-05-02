@@ -1,18 +1,21 @@
 
 import { IoMenu } from 'react-icons/io5';
 import { RxCross2 } from 'react-icons/rx';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import logo from "../../src/assets/images/logo-0.png"
 import { BsCoin } from 'react-icons/bs';
 import useAuth from '../Hooks/useAuth';
+import useUserData from '../Hooks/useUserData';
 
 
 
 const Navbar = () => {
 
     const { user, logOutUser } = useAuth()
+    const [userData, isLoading] = useUserData()
+    console.log(userData, 'navbar')
 
-    const role = "admin"
+    const location = useLocation()
 
 
     const handleLogOutUser = () => {
@@ -22,7 +25,7 @@ const Navbar = () => {
 
     const navLinks = <>
         <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/'}>Home</NavLink>
-        <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/dashboard/admin-home'}>Dashboard</NavLink>
+        <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/${userData?.role}-home`}>Dashboard</NavLink>
         <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/coin'}>Available Coin </NavLink>
         {
             user ? '' : <>
