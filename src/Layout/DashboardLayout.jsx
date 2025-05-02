@@ -9,18 +9,6 @@ const DashboardLayout = () => {
 
   const [userData] = useUserData();
 
-  const navigate = useNavigate()
-
-  if(userData?.role){
-    // navigate(`/dashboard/${userData?.role}-home`)
-  }
-
-
-  // useEffect(() => {
-    
-  // }, [])
-
-
   return (
     <div className="min-h-screen container mx-auto border border-gray-200  flex flex-col bg-gray-100">
       {/* Navbar */}

@@ -13,9 +13,6 @@ const Navbar = () => {
 
     const { user, logOutUser } = useAuth()
     const [userData, isLoading] = useUserData()
-    console.log(userData, 'navbar')
-
-    const location = useLocation()
 
 
     const handleLogOutUser = () => {
@@ -25,8 +22,14 @@ const Navbar = () => {
 
     const navLinks = <>
         <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/'}>Home</NavLink>
-        <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/${userData?.role}-home`}>Dashboard</NavLink>
-        <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/coin'}>Available Coin </NavLink>
+        {
+            user && userData &&
+            <>
+                <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/coin'}>Available Coin </NavLink>
+                <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/${userData?.role}-home`}>Dashboard</NavLink>
+            </>
+        }
+
         {
             user ? '' : <>
                 <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/login'}>Login</NavLink>
@@ -62,7 +65,7 @@ const Navbar = () => {
                                 user ? <div className=' items-center flex flex-col-reverse gap-3  lg:hidden '>
 
                                     <div className='flex items-center gap-1'>
-                                        <span className='text-xl font-bold text-secondary-color'>10</span> <BsCoin className='text-3xl' />
+                                        <span className='text-xl font-bold text-secondary-color'>{userData?.coins}</span> <BsCoin className='text-3xl' />
                                     </div>
 
                                     <Link className="px-2 bg-primary-color border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">Join as Developer</Link>
@@ -83,7 +86,7 @@ const Navbar = () => {
                     user && <div className=' items-center hidden  lg:block '>
                         <div className=' flex items-center gap-2'>
                             <div className='flex items-center gap-1'>
-                                <span className='text-xl font-bold text-secondary-color'>10</span> <BsCoin className='text-3xl' />
+                                <span className='text-xl font-bold text-secondary-color'>{userData?.coins}</span> <BsCoin className='text-3xl' />
                             </div>
                             <Link to="/profile">
                                 <div className="avatar">

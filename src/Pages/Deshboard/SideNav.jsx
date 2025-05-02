@@ -1,7 +1,6 @@
 import { NavLink} from "react-router-dom";
 import useUserData from "../../Hooks/useUserData";
 import useAuth from "../../Hooks/useAuth";
-import Loading from "../../components/Loading";
 
 
 const SideNav = () => {
@@ -10,8 +9,6 @@ const SideNav = () => {
     
     const [userData] = useUserData()
 
-
-    console.log(userData)
 
 
     const role = userData?.role;
@@ -34,6 +31,7 @@ const SideNav = () => {
         <NavLink className="w-full  my-3 py-2 text-center" to={"/dashboard/add-task"}>Add New Tasks</NavLink>
         <NavLink className="w-full  my-3 py-2 text-center" to={"/dashboard/my-task"}>My Task's</NavLink>
         <NavLink className="w-full  my-3 py-2 text-center" to={"/dashboard/purchase-coin"}>Purchase Coin</NavLink>
+        <NavLink className="w-full  my-3 py-2 text-center" to={"/dashboard/payment-history"}>Payment History</NavLink>
     </>
 
 

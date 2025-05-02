@@ -5,15 +5,18 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import { FcGoogle } from 'react-icons/fc';
+import Swal from 'sweetalert2';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 const Login = () => {
 
-    const { signInUser, signInWithGoogle,  } = useAuth();
+    const { signInUser, signInWithGoogle, } = useAuth();
     const [error, setError] = useState('')
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors } } = useForm();
     const location = useLocation();
-    
+    const axiosPublic = useAxiosPublic()
+
 
 
     const onSubmit = async (data) => {
@@ -35,15 +38,64 @@ const Login = () => {
 
     }
 
-
+//  google login related 
     const handleGoogle = async () => {
-        const res = await signInWithGoogle()
-        console.log(res.user)
-        if(res.user.email){
-            navigate(location?.state?.from?.pathname || "/")
-        }
-    }
+        try {
 
+            let userRole = ''
+            await Swal.fire({
+                title: "Select Your role",
+                input: "select",
+                inputOptions: {
+                    buyer: "Buyer",
+                    worker: "Worker",
+                },
+                inputPlaceholder: "Select role",
+                showCancelButton: true,
+                confirmButtonColor: " #05a117",
+                cancelButtonColor: "red",
+                inputValidator: (value) => {
+
+                    userRole = value
+                }
+            });
+
+            if (!userRole) {
+                return
+            }
+
+            const res = await signInWithGoogle()
+
+            if (res.user) {
+
+                const { email, photoURL, displayName, } = res.user;
+                const userData = { name: displayName, email, image: photoURL, role: userRole }
+                try {
+                    setError('')
+                    await axiosPublic.post('/users', userData)
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "User create successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    navigate(location?.state?.from?.pathname || "/")
+
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+
+        } catch (error) {
+            const err = (error.message.includes('auth/email-already-in-use'))
+            if (err) {
+                setError('email already in use')
+            }
+        }
+
+    }
 
 
 

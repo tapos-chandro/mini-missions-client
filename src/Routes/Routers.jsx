@@ -14,6 +14,11 @@ import BuyerHome from "../Pages/Deshboard/Buyer/BuyerHome";
 import AddTask from "../Pages/Deshboard/Buyer/AddTask";
 import MyTask from "../Pages/Deshboard/Buyer/MyTask";
 import PurchasesCoins from "../Pages/Deshboard/Buyer/PurchasesCoins";
+import PaymentHistory from "../Pages/Deshboard/Buyer/PaymentHistory";
+import TaskList from "../Pages/Deshboard/Woarker/TaskList";
+import Submissions from "../Pages/Deshboard/Woarker/Submissions";
+import Withdrawals from "../Pages/Deshboard/Woarker/Withdrawals";
+import PurchaseCoins from "../Pages/Payment/PurchaseCoins";
 
 
 
@@ -34,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile />
+            }, 
+            {
+                path: 'purchase-coins',
+                element: <PrivetRoutes><PurchaseCoins></PurchaseCoins></PrivetRoutes>
             }
         ],
 
@@ -56,7 +65,7 @@ const router = createBrowserRouter([
 
             // admin relate route 
             {
-                path:"admin-home",
+                path: "admin-home",
                 element: <PrivetRoutes> <AdminHome></AdminHome></PrivetRoutes>,
             },
             {
@@ -67,12 +76,24 @@ const router = createBrowserRouter([
                 path: 'manage-task',
                 element: <PrivetRoutes><ManageTask></ManageTask></PrivetRoutes>,
             },
-          
+
             // worker related route 
 
             {
                 path: 'worker-home',
                 element: <PrivetRoutes><WorkerHome></WorkerHome></PrivetRoutes>
+            },
+            {
+                path: 'task-list',
+                element: <PrivetRoutes><TaskList></TaskList></PrivetRoutes>
+            },
+            {
+                path: 'my-submissions',
+                element: <PrivetRoutes><Submissions></Submissions></PrivetRoutes>
+            },
+            {
+                path: 'withdrawals',
+                element: <PrivetRoutes><Withdrawals></Withdrawals></PrivetRoutes>
             },
 
             // buyer related route 
@@ -89,11 +110,18 @@ const router = createBrowserRouter([
                 element: <PrivetRoutes><PurchasesCoins></PurchasesCoins></PrivetRoutes>
             },
             {
+                path: 'payment-history',
+                element: <PrivetRoutes><PaymentHistory></PaymentHistory></PrivetRoutes>
+            },
+            {
                 path: 'add-task',
                 element: <PrivetRoutes><AddTask></AddTask></PrivetRoutes>
-            }
-            
-            
+            },
+
+            // payment related route 
+
+
+
         ]
     }
 

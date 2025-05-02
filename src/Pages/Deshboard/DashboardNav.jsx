@@ -3,8 +3,11 @@ import logo from '../../assets/images/logo-0.png'
 import { IoMenuSharp, IoNotifications } from 'react-icons/io5';
 import useAuth from '../../Hooks/useAuth';
 import SideNav from './SideNav';
+import useUserData from '../../Hooks/useUserData';
 const DashboardNav = () => {
     const { user } = useAuth();
+    const [userData] = useUserData();
+
     return (
         <div>
             <div>
@@ -15,8 +18,8 @@ const DashboardNav = () => {
                     <div className='md:block lg:block hidden'>
                         <div className="flex gap-5 ">
                             <div>
-                                <div className='flex gap-3 text-sm font-medium text-primary-color items-center'>Available coin |  <img className='W-14 h-14 rounded-full' src={user?.photoURL} /> </div>
-                                <div className='flex gap-3 text-sm font-medium text-primary-color items-center'>User Role |  {user?.displayName} </div>
+                                <div className='flex gap-3 text-sm font-medium text-secondary-color items-center'>Available coin : {userData?.coins}   <img className='W-14 h-14 rounded-full' src={user?.photoURL} /> </div>
+                                <div className='flex gap-3 text-sm font-medium text-secondary-color items-center'>User Role |  {user?.displayName} </div>
                             </div>
                             <div className='flex items-center mr-5'>
                                 <IoNotifications className='text-4xl text-secondary-color cursor-pointer'></IoNotifications>

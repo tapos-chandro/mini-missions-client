@@ -16,6 +16,7 @@
     "firebase": "^11.6.1",
     "localforage": "^1.10.0",
     "match-sorter": "^8.0.0",
+    "pikaday": "^1.8.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.1",
