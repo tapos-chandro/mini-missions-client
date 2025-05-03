@@ -13,7 +13,7 @@ const PurchaseCoins = () => {
   };
 
   return (
-    <div className="  py-40 px-6">
+    <div className=" py-40 px-6">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
           Select a Coin Package
@@ -41,7 +41,7 @@ const PurchaseCoins = () => {
 
               <button
                 onClick={() => handlePurchase(coins, dollars)}
-                className="mt-auto bg-primary-color w-full py-2 rounded-full text-white font-semibold hover:bg-opacity-90 transition"
+                className="mt-auto hover:cursor-pointer btn bg-primary-color w-full py-2 rounded-full text-white font-semibold hover:bg-opacity-90 transition"
               >
                 Buy Now
               </button>
