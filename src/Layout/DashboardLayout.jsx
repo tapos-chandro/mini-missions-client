@@ -1,13 +1,10 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import SideNav from "../Pages/Deshboard/SideNav";
 import DashboardNav from "../Pages/Deshboard/DashboardNav";
 import Footer from "../components/Footer";
-import useUserData from "../Hooks/useUserData";
-import { useEffect } from "react";
+
 
 const DashboardLayout = () => {
-
-  const [userData] = useUserData();
 
   return (
     <div className="min-h-screen container mx-auto border border-gray-200  flex flex-col bg-gray-100">

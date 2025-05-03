@@ -1,7 +1,7 @@
 
 import { IoMenu } from 'react-icons/io5';
 import { RxCross2 } from 'react-icons/rx';
-import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import logo from "../../src/assets/images/logo-0.png"
 import { BsCoin } from 'react-icons/bs';
 import useAuth from '../Hooks/useAuth';
@@ -12,7 +12,7 @@ import useUserData from '../Hooks/useUserData';
 const Navbar = () => {
 
     const { user, logOutUser } = useAuth()
-    const [userData, isLoading] = useUserData()
+    const {userData} = useUserData()
 
 
     const handleLogOutUser = () => {

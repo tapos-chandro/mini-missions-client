@@ -13,7 +13,7 @@ const AddTask = () => {
     const [localImage, setLocalImage] = useState('');
     const [uploadImageUrl, setUploadImageUrl] = useState('');
     const axiosSecure = useAxiosSecure();
-    const [userData] = useUserData();
+    const {userData, refetch} = useUserData();
     const navigate = useNavigate();
     const {user} = useAuth();
 
@@ -33,7 +33,6 @@ const AddTask = () => {
         const payAmount = Number(data?.required_workers) * Number(data?.payable_amount);
 
         const addTaskData = {...data, image:uploadImageUrl, email: user?.email}
-        console.log(addTaskData)
 
         if (payAmount > userData.coins) {
             Swal.fire({
@@ -58,7 +57,6 @@ const AddTask = () => {
 
         const res = await axiosSecure.post(`/add-task`, addTaskData)
 
-        console.log(res)
         if(res.data.insertedId){
             Swal.fire({
                 position: "top-end",
@@ -67,10 +65,15 @@ const AddTask = () => {
                 showConfirmButton: false,
                 timer: 1500
               });
-              reset()
+
+            const patchResult = await axiosSecure.patch(`/users?email=${user?.email}`, {payAmount} )
+            if(patchResult?.data?.acknowledged === true){
+                refetch();
+                reset();
+                setUploadImageUrl('')
+            }
+
         }
-
-
     }
 
 

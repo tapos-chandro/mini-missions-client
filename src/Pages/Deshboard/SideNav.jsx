@@ -7,7 +7,7 @@ const SideNav = () => {
 
     const {user} = useAuth()
     
-    const [userData] = useUserData()
+    const {userData} = useUserData()
 
 
 
