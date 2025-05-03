@@ -19,6 +19,7 @@ import TaskList from "../Pages/Deshboard/Woarker/TaskList";
 import Submissions from "../Pages/Deshboard/Woarker/Submissions";
 import Withdrawals from "../Pages/Deshboard/Woarker/Withdrawals";
 import PurchaseCoins from "../Pages/Payment/PurchaseCoins";
+import UpdateTask from "../Pages/Deshboard/Buyer/UpdateTask";
 
 
 
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
             {
                 path: 'purchase-coins',
                 element: <PrivetRoutes><PurchaseCoins></PurchaseCoins></PrivetRoutes>
-            }
+            },
         ],
 
 
@@ -117,6 +118,11 @@ const router = createBrowserRouter([
                 path: 'add-task',
                 element: <PrivetRoutes><AddTask></AddTask></PrivetRoutes>
             },
+
+            {
+                path: "update-task/:id",
+                element: <UpdateTask></UpdateTask>
+            }
 
             // payment related route 
 
