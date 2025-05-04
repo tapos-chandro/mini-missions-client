@@ -19,7 +19,7 @@ const DashboardNav = () => {
                         <div className="flex gap-5 ">
                             <div>
                                 <div className='flex gap-3 text-sm font-medium text-secondary-color items-center'>Available coin : {userData?.coins} <img className='W-14 h-14 rounded-full' src={user?.photoURL} /> </div>
-                                <div className='flex gap-3 text-sm font-medium text-secondary-color items-center'>User Role |  {user?.displayName} </div>
+                                <div className='flex gap-3 text-sm font-medium text-secondary-color items-center capitalize'>{userData?.role} |  {user?.displayName} </div>
                             </div>
                             <div className='flex items-center mr-5'>
                                 <IoNotifications className='text-4xl text-secondary-color cursor-pointer'></IoNotifications>

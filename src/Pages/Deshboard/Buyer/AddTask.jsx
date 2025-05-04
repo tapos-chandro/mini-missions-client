@@ -46,7 +46,7 @@ const AddTask = () => {
             }).then((result) => {
                 /* Read more about isConfirmed, isDenied below */
                 if (result.isConfirmed) {
-                    return navigate('/purchase-coins')
+                    return navigate('/dashboard/purchase-coin')
                 } else if (result.isCancel) {
                     return
                 }
