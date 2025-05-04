@@ -1,16 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import usePackages from '../../../Hooks/usePackages';
-
-// const coinPackages = [
-//     { coins: 10, dollars: 1 },
-//     { coins: 150, dollars: 10 },
-//     { coins: 500, dollars: 20 },
-//     { coins: 1000, dollars: 35 },
-// ];
-
 
 
 const PurchaseCoins = () => {
@@ -20,16 +10,16 @@ const PurchaseCoins = () => {
 
     return (
         <div className="py-14 px-6">
-            <div className="max-w-7xl mx-auto">
+            <div className="mx-auto">
                 <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
                     Select a Coin Package
                 </h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="flex flex-wrap gap-8  justify-center">
                     {coinPackages?.map(({ coins, dollars , _id}) => (
                         <div
                             key={_id}
-                            className="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-gray-200 hover:border-primary-color transition duration-300 flex flex-col items-center p-8"
+                            className="bg-white rounded-3xl  w-52 sm:w-80 md:w-80 lg:w-60 shadow-sm hover:shadow-xl border border-gray-200 hover:border-primary-color transition duration-300 flex flex-col items-center p-8"
                         >
                             <div className="text-center mb-6">
                                 <div className="text-5xl font-bold text-primary-color">
@@ -47,8 +37,7 @@ const PurchaseCoins = () => {
 
                             <Link to={`/payment/${_id}`}>
                                 <button
-                                    // onClick={() => handlePurchase(coins, dollars)}
-                                    className="mt-auto hover:cursor-pointer btn bg-primary-color px-14 w-full py-2 rounded-full text-white font-semibold hover:bg-opacity-90 transition"
+                                    className="mt-auto hover:cursor-pointer btn bg-primary-color w-full py-2 rounded-full text-white font-semibold hover:bg-opacity-90 transition"
                                 >
                                     Buy Now
                                 </button>

@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 
 const CheckoutForm = () => {
 
-  const { userData, refetch } = useUserData();
+  const { refetch } = useUserData();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const { id } = useParams();
@@ -52,10 +52,6 @@ const CheckoutForm = () => {
 
 
     const client_secret = await axiosSecure.post('/secret', payAmount)
-    // console.log(res)
-
-
-
 
     if (error) {
       console.log('[error]', error);
@@ -82,22 +78,24 @@ const CheckoutForm = () => {
 
         if (res.data.modifiedCount > 0) {
 
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Your Payment Successfully",
-            showConfirmButton: false,
-            timer: 1500
-          });
+          const { id, amount, } = payResult.paymentIntent
+
+          const paymentData = { id, amount, email: user?.email }
+          const res = await axiosSecure.post('/payment', paymentData)
+          if (res?.data?.acknowledged === true)
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your Payment Successfully",
+              showConfirmButton: false,
+              timer: 1500
+            });
           navigate('/dashboard/purchase-coin')
           refetch()
         }
 
 
       }
-
-
-
     }
   };
 

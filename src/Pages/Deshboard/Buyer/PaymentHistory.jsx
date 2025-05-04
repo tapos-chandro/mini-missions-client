@@ -1,9 +1,52 @@
+import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import useAuth from '../../../Hooks/useAuth';
 
 const PaymentHistory = () => {
+    const {user} = useAuth();
+
+    const axiosSecure = useAxiosSecure();
+
+    // if(user?.email){
+    //     return;
+    // }
+
+
+    const {data:paymentData } = useQuery({
+        queryKey: ["paymentData"],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/payment-history?email=${user?.email}`)
+            return res.data;
+        }
+    })
+
+    console.log(paymentData)
+
     return (
-        <div>
-            <h1>This is paymentHistory</h1>
+        <div className="overflow-x-auto">
+            <table className="table table-zebra min-w-full">
+                {/* head */}
+                <thead>
+                    <tr className='text-secondary-color'>
+                        <th>No</th>
+                        <th>Transitions ID</th>
+                        <th>Email</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {/* row 1 */}
+                   {
+                    paymentData?.map(({_id, id, email, amount}, index )=>  <tr key={_id}>
+                        <th>{index + 1}</th>
+                        <td>{id}</td>
+                        <td>{email}</td>
+                        <td>${amount / 100}</td>
+                    </tr>)
+                   }
+                </tbody>
+            </table>
         </div>
     );
 };
