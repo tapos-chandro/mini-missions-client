@@ -30,11 +30,11 @@ const AddTask = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        const payAmount = Number(data?.required_workers) * Number(data?.payable_amount);
+        const amount = Number(data?.required_workers) * Number(data?.payable_amount);
 
         const addTaskData = {...data, image:uploadImageUrl, email: user?.email, buyer_name: user?.displayName}
 
-        if (payAmount > userData.coins) {
+        if (amount > userData.coins) {
             Swal.fire({
                 icon: 'error',
                 title: "Not available Coin. Purchase Coin",
@@ -66,7 +66,7 @@ const AddTask = () => {
                 timer: 1500
               });
 
-            const patchResult = await axiosSecure.patch(`/users?email=${user?.email}`, {payAmount} )
+            const patchResult = await axiosSecure.patch(`/users?email=${user?.email}`, {amount} )
             if(patchResult?.data?.acknowledged === true){
                 refetch();
                 reset();

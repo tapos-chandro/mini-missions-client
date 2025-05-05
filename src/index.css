@@ -17,6 +17,9 @@
   --border-radius: 30rem
 }
 
+.PhoneInput--focus{
+  outline: 20px;
+}
 
 @import "tailwindcss";
 
