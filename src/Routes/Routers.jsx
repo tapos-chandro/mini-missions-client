@@ -19,6 +19,7 @@ import TaskList from "../Pages/Deshboard/Woarker/TaskList";
 import Submissions from "../Pages/Deshboard/Woarker/Submissions";
 import Withdrawals from "../Pages/Deshboard/Woarker/Withdrawals";
 import Payment from "../Pages/Payment/Payment";
+import ViewDetail from "../Pages/Deshboard/Woarker/ViewDetail";
 
 
 
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
             {
                 path: 'withdrawals',
                 element: <PrivetRoutes><Withdrawals></Withdrawals></PrivetRoutes>
+            },
+            {
+                path: 'detail/:id',
+                element: <PrivetRoutes><ViewDetail></ViewDetail></PrivetRoutes>
             },
 
             // buyer related route 

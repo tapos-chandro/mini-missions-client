@@ -32,7 +32,7 @@ const AddTask = () => {
     const onSubmit = async (data) => {
         const payAmount = Number(data?.required_workers) * Number(data?.payable_amount);
 
-        const addTaskData = {...data, image:uploadImageUrl, email: user?.email}
+        const addTaskData = {...data, image:uploadImageUrl, email: user?.email, buyer_name: user?.displayName}
 
         if (payAmount > userData.coins) {
             Swal.fire({

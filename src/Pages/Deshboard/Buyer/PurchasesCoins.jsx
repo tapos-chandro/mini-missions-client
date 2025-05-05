@@ -1,11 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import usePackages from '../../../Hooks/usePackages';
+import Loading from '../../../components/Loading';
 
 
 const PurchaseCoins = () => {
 
-    const {coinPackages} =usePackages();
+    const {coinPackages, isLoading} =usePackages();
+
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
 
     return (

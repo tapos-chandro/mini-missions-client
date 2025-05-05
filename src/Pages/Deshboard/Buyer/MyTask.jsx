@@ -4,6 +4,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import Loading from "../../../components/Loading";
 
 
 const MyTask = () => {
@@ -14,7 +15,7 @@ const MyTask = () => {
     const { register, handleSubmit, setValue } = useForm()
 
 
-    const {data:tasksData, refetch} = useQuery({
+    const {data:tasksData, refetch, isLoading} = useQuery({
         queryKey: ['tasksData'],
         queryFn: async () => {
             const res = await axiosSecure.get(`/tasks?email=${user.email}`)
@@ -22,6 +23,9 @@ const MyTask = () => {
         }
     }) 
 
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
 
     const onSubmit = async (data) =>{

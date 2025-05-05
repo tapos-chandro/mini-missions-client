@@ -2,18 +2,15 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
+import Loading from '../../../components/Loading';
 
 const PaymentHistory = () => {
+
     const {user} = useAuth();
 
     const axiosSecure = useAxiosSecure();
 
-    // if(user?.email){
-    //     return;
-    // }
-
-
-    const {data:paymentData } = useQuery({
+    const {data:paymentData  , isLoading} = useQuery({
         queryKey: ["paymentData"],
         queryFn: async () => {
             const res = await axiosSecure.get(`/payment-history?email=${user?.email}`)
@@ -21,8 +18,9 @@ const PaymentHistory = () => {
         }
     })
 
-    console.log(paymentData)
-
+    if(isLoading){
+        return <Loading></Loading>
+    }
     return (
         <div className="overflow-x-auto">
             <table className="table table-zebra min-w-full">

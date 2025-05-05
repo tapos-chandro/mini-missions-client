@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 const usePackages = () => {
     const axiosSecure = useAxiosSecure();
 
-    const { data: coinPackages } = useQuery({
+    const { data: coinPackages, isLoading } = useQuery({
         queryKey: ['coinPackages'],
         queryFn: async () => {
             const res = await axiosSecure.get('/package')
@@ -13,7 +13,7 @@ const usePackages = () => {
         }
     })
 
-    return {coinPackages}
+    return {coinPackages, isLoading}
 };
 
 export default usePackages;
