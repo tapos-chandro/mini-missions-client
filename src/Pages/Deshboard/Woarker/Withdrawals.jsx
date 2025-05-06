@@ -49,7 +49,8 @@ const Withdrawals = () => {
         };
 
         const res = await axiosSecure.post('/withdrawals', withdrawalData)
-        // console.log(res)
+
+
         const amount = { amount: coinToWithdraw }
         if (res.data.insertedId) {
             const updateAmount = await axiosSecure.patch(`/users?email=${user?.email}`, amount)
