@@ -53,8 +53,6 @@ const ManageUser = () => {
                 confirmButtonText: "Yes, delete it!"
             }).then(async (result) => {
                 if (result.isConfirmed) {
-                    console.log('click me')
-
                     const res = await axiosSecure.delete(`/user-delete?id=${id}`)
                     console.log(res.data)
                     if (res.data?.deletedCount > 0) {
@@ -64,8 +62,6 @@ const ManageUser = () => {
                             icon: "success"
                         });
                     }
-
-
                 }
             });
         } catch (error) {
