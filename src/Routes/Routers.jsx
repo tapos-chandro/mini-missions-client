@@ -20,6 +20,7 @@ import Submissions from "../Pages/Deshboard/Woarker/Submissions";
 import Withdrawals from "../Pages/Deshboard/Woarker/Withdrawals";
 import Payment from "../Pages/Payment/Payment";
 import ViewDetail from "../Pages/Deshboard/Woarker/ViewDetail";
+import AdminRoutes from "./AdminRoutes";
 
 
 
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile />
-            }, 
+            },
             // {
             //     path: 'purchase-coins',
             //     element: <PrivetRoutes><PurchaseCoins></PurchaseCoins></PrivetRoutes>
@@ -71,15 +72,15 @@ const router = createBrowserRouter([
             // admin relate route 
             {
                 path: "admin-home",
-                element: <PrivetRoutes> <AdminHome></AdminHome></PrivetRoutes>,
+                element: <AdminRoutes><AdminHome></AdminHome></AdminRoutes>,
             },
             {
                 path: 'manage-user',
-                element: <PrivetRoutes><ManageUser></ManageUser></PrivetRoutes>,
+                element: <AdminRoutes><ManageUser></ManageUser></AdminRoutes>,
             },
             {
                 path: 'manage-task',
-                element: <PrivetRoutes><ManageTask></ManageTask></PrivetRoutes>,
+                element: <AdminRoutes> <ManageTask></ManageTask></AdminRoutes>,
             },
 
             // worker related route 

@@ -25,7 +25,6 @@ const Navbar = () => {
         {
             user && userData &&
             <>
-                <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/coin'}>Available Coin </NavLink>
                 <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/${userData?.role}-home`}>Dashboard</NavLink>
             </>
         }
