@@ -14,7 +14,10 @@
   --color-secondary-text: #5f6160;
   --color-light: #fff;
   --button-rounded:'full';
-  --border-radius: 30rem
+  --border-radius: 30rem;
+  --color-role-admin: #d2ac69;  
+  --color-role-buyer: #047857;   /* Deep Teal – Stability & Financial Intent */
+  --color-role-worker: #B45309;  /* Burnt Orange – Energy & Productivity */
 }
 
 .PhoneInput--focus{
