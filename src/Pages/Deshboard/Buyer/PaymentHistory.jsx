@@ -26,17 +26,18 @@ const PaymentHistory = () => {
             <table className="table table-zebra min-w-full">
                 {/* head */}
                 <thead>
-                    <tr className='text-secondary-color'>
-                        <th>No</th>
+                    <tr className='rounded-t-xl bg-primary-color text-light'>
+                        <th className='rounded-tl-xl'>No</th>
                         <th>Transitions ID</th>
                         <th>Email</th>
-                        <th>Amount</th>
+                        <th className='rounded-tr-xl'>Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     {/* row 1 */}
                    {
-                    paymentData?.map(({_id, id, email, amount}, index )=>  <tr key={_id}>
+                    paymentData?.map(({_id, id, email, amount}, index )=>  
+                    <tr key={_id} className='border-b border-gray-200'>
                         <th>{index + 1}</th>
                         <td>{id}</td>
                         <td>{email}</td>

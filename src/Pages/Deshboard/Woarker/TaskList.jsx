@@ -39,7 +39,7 @@ const TaskList = () => {
                                 <span className="font-medium">Deadline:</span> {task.completion_date}
                             </p>
                             <p className="text-gray-600">
-                                <span className="font-medium">Payable:</span> ${task.payable_amount}
+                                <span className="font-medium">Payable:</span> {task.payable_amount} Coins
                             </p>
                             <p className="text-gray-600">
                                 <span className="font-medium">Required Workers:</span> {task.required_workers}

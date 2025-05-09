@@ -38,7 +38,6 @@ const AddTask = () => {
             Swal.fire({
                 icon: 'error',
                 title: "Not available Coin. Purchase Coin",
-                // showDenyButton: true,
                 showCancelButton: true,
                 confirmButtonColor: '#05a117',
                 cancelButtonColor: '#e8442e',
@@ -57,7 +56,7 @@ const AddTask = () => {
 
         const res = await axiosSecure.post(`/add-task`, addTaskData)
 
-        if(res.data.insertedId){
+        if(res?.data?.insertedId){
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -108,10 +107,10 @@ const AddTask = () => {
                     <input type="text" {...register('task_detail', { required: 'Filed is required' })} className="input w-full focus:border-none focus:outline-primary-color" placeholder="Task detail" />
                     <p className="text-red-500">{errors?.task_detail?.message}</p>
                     <label className="label">Required Workers </label>
-                    <input type="number" {...register('required_workers', { required: "Filed is required" })} className="input w-full focus:border-none focus:outline-primary-color" placeholder="Required Workers" />
+                    <input type="number" {...register('required_workers', { required: "Filed is required" , valueAsNumber: true})} className="input w-full focus:border-none focus:outline-primary-color" placeholder="Required Workers" />
                     <p className="text-red-500">{errors?.required_workers?.message}</p>
                     <label className="label">Payable Amount</label>
-                    <input type="number" {...register('payable_amount', { required: 'Filed is required' })} className="input w-full focus:border-none focus:outline-primary-color" placeholder="Payable Amount" />
+                    <input type="number" {...register('payable_amount', { required: 'Filed is required',  valueAsNumber: true })} className="input w-full focus:border-none focus:outline-primary-color" placeholder="Payable Amount" />
                     <p className="text-red-500">{errors?.payable_amount?.message}</p>
                     <label className="label">Completion Date </label>
                     <input type="date" {...register('completion_date', { required: "Filed is required" })} className="input w-full focus:border-none focus:outline-primary-color" placeholder="Completion Date" />

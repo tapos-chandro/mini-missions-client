@@ -16,12 +16,14 @@ const MyTask = () => {
 
 
     const {data:tasksData, refetch, isLoading} = useQuery({
-        queryKey: ['tasksData'],
+        queryKey: ['tasksData', user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/tasks?email=${user.email}`)
+            const res = await axiosSecure.get(`/tasks?email=${user?.email}`)
             return res.data;
         }
     }) 
+
+    console.log(taskData)
 
     if(isLoading){
         return <Loading></Loading>
@@ -74,21 +76,21 @@ const MyTask = () => {
 
             <div className="overflow-x-auto bg-white shadow-md rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 overflow-x-scroll">
-                    <thead className="bg-gray-100">
-                        <tr className="text-left text-sm font-semibold text-secondary-color">
-                            <th className="px-4 py-3">Title</th>
-                            <th className="px-4 py-3">Details</th>
-                            <th className="px-4 py-3">Submission Details</th>
-                            <th className="px-4 py-3">Actions</th>
+                    <thead className="bg-primary-color">
+                        <tr className="text-left text-sm font-semibold text-secondary-color ">
+                            <th className="px-4 py-3 text-light text-center">Title</th>
+                            <th className="px-4 py-3 text-light text-center">Details</th>
+                            <th className="px-4 py-3 text-light text-center">Submission Details</th>
+                            <th className="px-4 py-3 text-light text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100 ">
                         {tasksData?.map((task) => (
                             <tr key={task._id} className="text-sm text-secondary-text">
-                                <td className="px-4 py-3 whitespace-nowrap">{task?.task_title}</td>
-                                <td className="px-4 py-3 whitespace-normal">{task?.task_detail}</td>
-                                <td className="px-4 py-3">{task?.submission_info}</td>
-                                <td className="px-4 py-3 space-x-2 flex">
+                                <td className="px-4 py-3 text-center whitespace-nowrap">{task?.task_title}</td>
+                                <td className="px-4 py-3 text-center whitespace-normal">{task?.task_detail}</td>
+                                <td className="px-4 py-3 text-center">{task?.submission_info}</td>
+                                <td className="px-4 py-3 flex justify-center text-center space-x-2 ">
                                     <button  className="px-3 py-1 hover:cursor-pointer bg-primary-color text-white rounded text-sm" onClick={() => { handleUpdate(task?._id)}}>
                                         Update
                                     </button>
@@ -153,6 +155,8 @@ const MyTask = () => {
                     </div>
                 </div>
             </dialog>
+
+
 
 
 

@@ -75,7 +75,7 @@ const ViewDetail = () => {
         <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-xl pt-10">
             <h2 className="text-3xl font-bold mb-4 text-secondary-color">{task?.task_title}</h2>
             <p className="mb-2 text-secondary-text"><strong className='text-secondary-color'>Description:</strong> {task?.task_detail}</p>
-            <p className="mb-2 text-secondary-text"><strong className='text-secondary-color'>Payable Amount:</strong> ${task?.payable_amount}</p>
+            <p className="mb-2 text-secondary-text"><strong className='text-secondary-color'>Payable Amount: </strong>{task?.payable_amount} Coins</p>
             <p className="mb-2 text-secondary-text"><strong className='text-secondary-color'>Buyer:</strong> {task?.buyer_name} ({task?.email})</p>
             <p className="mb-6 text-secondary-text"><strong className='text-secondary-color'>Required Workers:</strong> {task?.required_workers}</p>
 

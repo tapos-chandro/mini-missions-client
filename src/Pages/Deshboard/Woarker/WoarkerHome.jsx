@@ -1,13 +1,15 @@
 import { useQueries } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
+import Loading from '../../../components/Loading';
+
+
 
 const WorkerHome = () => {
 
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
-
 
 
     const [approvedSubmissions, states, isLoading] = useQueries(
@@ -32,67 +34,16 @@ const WorkerHome = () => {
         }
     )
 
-    console.log(states.data,'sklfslkfj')
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
 
 
-    // console.log(states.data,'slfjslkfjslk')
+    // console.log(approvedSubmissions.data)
+    const approvedSortData = approvedSubmissions?.data?.sort((a, b) =>new Date(b.current_date)  - new Date(a.current_date))
+    // console.log(approvedSortData, 'slflssssssssssssssssssssssssssssssssssssssssssss')
 
-    // Fake submission data
-    // const submissions = [
-    //     {
-    //         task_title: 'Design Logo',
-    //         payable_amount: 5,
-    //         Buyer_name: 'Alice',
-    //         status: 'approved',
-    //     },
-    //     {
-    //         task_title: 'Write Blog Post',
-    //         payable_amount: 3,
-    //         Buyer_name: 'Bob',
-    //         status: 'pending',
-    //     },
-    //     {
-    //         task_title: 'Create Landing Page',
-    //         payable_amount: 7,
-    //         Buyer_name: 'Charlie',
-    //         status: 'approved',
-    //     },
-    //     {
-    //         task_title: 'Data Entry',
-    //         payable_amount: 2,
-    //         Buyer_name: 'Dave',
-    //         status: 'rejected',
-    //     },
-    //     {
-    //         task_title: 'Social Media Management',
-    //         payable_amount: 4,
-    //         Buyer_name: 'Alice',
-    //         status: 'pending',
-    //     },
-    // ];
-
-    const [stats, setStats] = useState({
-        totalSubmissions: 0,
-        pendingSubmissions: 0,
-        totalEarnings: 0,
-    });
-
-    // const [approvedSubmissions, setApprovedSubmissions] = useState([]);
-
-    // useEffect(() => {
-    //     const total = submissions?.length;
-    //     const pending = submissions?.filter(s => s.status === 'pending')?.length;
-    //     const approved = submissions?.filter(s => s.status === 'approved');
-    //     const earnings = approved?.reduce((sum, s) => sum + s.payable_amount, 0);
-
-    //     setStats({
-    //         totalSubmissions: total,
-    //         pendingSubmissions: pending,
-    //         totalEarnings: earnings,
-    //     });
-
-    //     setApprovedSubmissions(approved);
-    // }, []);
 
     return (
         <div className="p-6 max-w-7xl mx-auto">
@@ -125,7 +76,7 @@ const WorkerHome = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {approvedSubmissions?.data?.map((submission, index) => (
+                        {approvedSortData?.map((submission, index) => (
                             <tr key={index} className="border-b">
                                 <td className="p-3">{submission.task_title}</td>
                                 <td className="p-3">{submission.payable_amount} coins</td>

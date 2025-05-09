@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
-import Loading from './../../../components/Loading';
+
 
 const Submissions = () => {
     // Static data for submissions
@@ -10,25 +10,18 @@ const Submissions = () => {
     const { user } = useAuth();
     const [pageNumber, setPageNumber] = useState(1)
 
-
-
-
     const { data, isLoading } = useQuery({
         queryKey: ['submissionData', pageNumber],
         queryFn: async () => {
-            const res = await axiosSecure.get(`/submissions?email=${user?.email}&page=${pageNumber}&limit=${2}`);
+            const res = await axiosSecure.get(`/submissions?email=${user?.email}&page=${pageNumber}&limit=${10}`);
             return res.data
         }
     })
 
-    // if (isLoading) {
-    //     return <Loading></Loading>
-    // }
 
-    const parPage = Math.ceil(data?.submissionsCount / 2) || []
+    
+    const parPage = Math.ceil(data?.submissionsCount / 10) || []
     const totalPages = Object.keys([...Array(parPage)]) || []
-
-
 
     // Function to get status colors
     const getStatusClass = (status) => {
@@ -43,6 +36,22 @@ const Submissions = () => {
                 return 'text-gray-600 bg-gray-100';
         }
     };
+
+    const handleNext = () => {
+
+        if(pageNumber > 0  && pageNumber < totalPages.length){
+            setPageNumber(pageNumber + 1)
+        }
+      
+    }
+    const handlePrevious = () => {
+        if(pageNumber >  1){
+            setPageNumber(pageNumber - 1)
+        }
+      
+    }
+
+    const sortSubmissionData = data?.submissions?.sort((a, b) => (b.current_date) - (a.current_date) )
 
     return (
         <div className="max-w-6xl mx-auto p-6">
@@ -62,7 +71,7 @@ const Submissions = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data?.submissions?.map((sub, idx) => (
+                            {sortSubmissionData.map((sub, idx) => (
                                 <tr key={idx} className=" hover:bg-gray-50 border-b border-gray-200">
                                     <td className="px-6 py-4">{idx + 1}</td>
                                     <td className="px-6 py-4">{sub.task_title}</td>
@@ -88,11 +97,11 @@ const Submissions = () => {
                 </div>
             }
             <div className="join flex justify-center pt-10 gap-x-2">
-                <button className='join-item btn'>Prev</button>
+                <button className='join-item btn' onClick={handlePrevious}>Prev</button>
                 {
-                    totalPages?.map(page => <button onClick={() => setPageNumber(Number(page) + 1)} className={`join-item btn  text-light rounded-md ${pageNumber === Number(page) + 1 ? 'bg-red-400' : 'text-secondary-color'}`}>{Number(page) + 1}</button>)
+                    totalPages?.map(page => <button onClick={() => setPageNumber(Number(page)+ 1)} className={`join-item btn  text-light rounded-md ${pageNumber === Number(page) +1 ? 'bg-primary-color' : 'text-secondary-color'}`}>{Number(page) + 1}</button>)
                 }
-                <button className='join-item btn'>Next</button>
+                <button onClick={handleNext } className='join-item btn'>Next</button>
             </div>
         </div>
     );
