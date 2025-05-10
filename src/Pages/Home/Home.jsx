@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Banner from '../../components/Banner';
 import AvailableTask from './AvailableTask';
 import BestWorkers from './BestWorkers';

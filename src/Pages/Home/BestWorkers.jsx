@@ -1,47 +1,28 @@
-import React from 'react';
+
+import { useQuery } from '@tanstack/react-query';
 import SectionTitle from '../../components/SectionTitle';
+import useAxiosSecure from './../../Hooks/useAxiosSecure';
+import Loading from './../../components/Loading';
+
 
 const BestWorkers = () => {
 
+    const axiosSecure = useAxiosSecure();
 
-    const topWorkers = [
-        {
-            id: 1,
-            name: "Alice Johnson",
-            coins: 1200,
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
-        },
-        {
-            id: 2,
-            name: "Brian Smith",
-            coins: 1150,
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
-        },
-        {
-            id: 3,
-            name: "Carla Gomez",
-            coins: 1100,
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
-        },
-        {
-            id: 4,
-            name: "Daniel Lee",
-            coins: 1050,
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
-        },
-        {
-            id: 5,
-            name: "Ella Brown",
-            coins: 1000,
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
-        },
-        {
-            id: 6,
-            name: "Frank Wilson",
-            coins: 950,
-            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s",
-        },
-    ];
+
+    const {data:topWorkers, isLoading, refetch} = useQuery({
+        queryKey: ['topWorkers'],
+        queryFn: async () => {
+            const res = await axiosSecure('/top-workers')
+            return res.data
+        }
+    })
+
+
+    if(isLoading){
+        return <Loading></Loading>
+    }
+    console.log(topWorkers,'top Workers');
 
 
     return (

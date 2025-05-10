@@ -1,38 +1,45 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import EllipsisText from "react-ellipsis-text";
+import useAuth from '../Hooks/useAuth';
 
-const Card = () => {
-    return (
-        <div>
-            <div className="card bg-base-100  shadow-sm border border-primary-color">
-                <figure>
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBvqzyx_zoi6q2c0Gd1XnE7wysD9PGOLe3-A&s"
-                        alt="Shoes" className='w-full max-h-60 object-cover' />
-                </figure>
+const Card = ({ task }) => {
+  const { user } = useAuth();
+  const { _id, image, task_title, task_detail, buyer_name, payable_amount } = task;
 
-                <div className="card-body">
-                    <div className='flex gap-3 justify-between items-center '>
-                        <div className="avatar flex items-center gap-3">
-                            <div className="w-12 ring-1 ring-primary-color rounded-full">
-                                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                            </div>
-                            <p className='text-md font-bold text-secondary-text'>Tapos</p>
-                        </div>
-                        <div>
-                            <span className='text-4xl text-primary-color font-bold'>$5</span>
-                        </div>
-                    </div>
-                    <h2 className="card-title">
-                        Card Title
-                    </h2>
-                    <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
-                    <div className="card-actions justify-end">
-                        <button className="bg-primary-color rounded-full px-6 border-0 btn btn-primary">Fashion</button>
-                    </div>
-                </div>
+  return (
+    <div className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition duration-300">
+      {/* ✅ Image with padding */}
+      <div className="p-4 pt-5">
+        <img src={image} alt="Task" className="w-full h-52  object-cover rounded-2xl" />
+      </div>
+
+      <div className="px-5 pb-5 space-y-4">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-color">
+              <img src={user?.photoURL} alt="User" className="w-full h-full object-cover" />
             </div>
+            <span className="font-semibold text-gray-800">{buyer_name}</span>
+          </div>
+          <span className="text-xl font-bold text-primary-color">{payable_amount} Coins</span>
         </div>
-    );
+
+        <h2 className="text-lg font-bold text-gray-900">{task_title}</h2>
+
+        <p className="text-gray-600 text-sm">
+          <EllipsisText text={task_detail} length={150} />
+        </p>
+
+        <div className="flex justify-end">
+          <Link to={`/dashboard/detail/${_id}`}>
+            <button className="bg-primary-color text-white px-5 py-2 rounded-full hover:bg-opacity-90 transition">
+              View Details
+            </button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Card;

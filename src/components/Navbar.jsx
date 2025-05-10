@@ -12,7 +12,7 @@ import useUserData from '../Hooks/useUserData';
 const Navbar = () => {
 
     const { user, logOutUser } = useAuth()
-    const {userData} = useUserData()
+    const {userData, isLoading} = useUserData()
 
 
     const handleLogOutUser = () => {
@@ -20,12 +20,16 @@ const Navbar = () => {
 
     }
 
+
     const navLinks = <>
         <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/'}>Home</NavLink>
         {
-            user && userData &&
+           user?.email &&
             <>
                 <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/${userData?.role}-home`}>Dashboard</NavLink>
+                {
+                 userData?.role === "worker" && <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/task-list`}>Available Tasks</NavLink>
+                }
             </>
         }
 
