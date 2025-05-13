@@ -4,7 +4,7 @@
 [💻Live Project](https://mini-missions.netlify.app)
 
 ## Admin Login:
-- **Username**: mini@mission.com
+- **Admin Email**: mini@mission.com
 - **Password**: Mini12345678@
 
 ## Features:
