@@ -6,13 +6,14 @@ import logo from "../../src/assets/images/logo-0.png"
 import { BsCoin } from 'react-icons/bs';
 import useAuth from '../Hooks/useAuth';
 import useUserData from '../Hooks/useUserData';
+import { useEffect } from 'react';
 
 
 
 const Navbar = () => {
 
-    const { user, logOutUser } = useAuth()
-    const {userData, isLoading} = useUserData()
+    const { user, logOutUser, loading } = useAuth()
+    const { userData, isLoading, refetch } = useUserData()
 
 
     const handleLogOutUser = () => {
@@ -20,17 +21,20 @@ const Navbar = () => {
 
     }
 
+    // if(loading || isLoading){
+    //     return
+    // }
 
     const navLinks = <>
         <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={'/'}>Home</NavLink>
         {
-           user?.email &&
-            <>
-                <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/${userData?.role}-home`}>Dashboard</NavLink>
-                {
-                 userData?.role === "worker" && <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/task-list`}>Available Tasks</NavLink>
-                }
-            </>
+            userData ?
+                <>
+                    <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/${userData?.role}-home`}>Dashboard</NavLink>
+                    {
+                        userData?.role === "worker" ? <NavLink className="px-2 bg-transparent border-none hover:border lg:text-md  btn m-2 text-secondary-text" to={`/dashboard/task-list`}>Available Tasks</NavLink> : ''
+                    }
+                </> : ""
         }
 
         {
@@ -49,7 +53,11 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    {navLinks}
+                    {
+                        isLoading && loading ? ""  : <div>
+                            {navLinks}
+                        </div>
+                    }
                 </ul>
             </div>
             <div className="navbar-end flex justify-end">
@@ -63,7 +71,11 @@ const Navbar = () => {
                         <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                             <label htmlFor="my-drawer-4" aria-label="close sidebar" className="drawer-overlay "><RxCross2 className='text-primary-color text-2xl mb-5 border rounded-full p-1' /></label>
                             {/* Sidebar content here */}
-                            {navLinks}
+                            {
+                                isLoading && loading ? "" : <div>
+                                    {navLinks}
+                                </div>
+                            }
                             {
                                 user ? <div className=' items-center flex flex-col-reverse gap-3  lg:hidden '>
 
@@ -71,7 +83,7 @@ const Navbar = () => {
                                         <span className='text-xl font-bold text-secondary-color'>{userData?.coins}</span> <BsCoin className='text-3xl' />
                                     </div>
 
-                                    <Link className="px-2 bg-primary-color border-none hover:border lg:text-md  btn m-2 text-primary-text" to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">Join as Developer</Link>
+                                    <Link className="px-2 bg-primary-color border-none hover:border lg:text-md  btn m-2 text-primary-text" to='https://github.com/tapos-chandro' target="_blank">Join as Developer</Link>
                                     <button className='btn  btn-primary bg-primary-color border-none mx-3' onClick={handleLogOutUser}> LogOut </button>
                                     <Link to='/profile'>
                                         <div className="avatar">
@@ -103,7 +115,7 @@ const Navbar = () => {
                         </div>
                     </div>
                 }
-                <Link to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">
+                <Link to={'https://github.com/tapos-chandro'} target="_blank">
                     <button className=" bg-primary-color border-none hover:border lg:text-md  btn rounded-full px-5 md:hidden  lg:inline-block hidden  text-primary-text" >
                         Join as Developer
                     </button>

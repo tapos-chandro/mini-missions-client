@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
+import ReactHelmet from '../../../components/ReactHelmet';
 
 
 const Submissions = () => {
@@ -55,6 +56,7 @@ const Submissions = () => {
 
     return (
         <div className="max-w-6xl mx-auto p-6">
+            <ReactHelmet helmetText={"Worker || Submissions"} />
             <h2 className="text-3xl font-bold mb-6 text-gray-800">My Submissions</h2>
 
             {

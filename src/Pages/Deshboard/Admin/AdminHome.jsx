@@ -2,6 +2,7 @@ import { useQueries } from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Loading from './../../../components/Loading';
+import ReactHelmet from "../../../components/ReactHelmet";
 
 const AdminHome = () => {
   const { user } = useAuth();
@@ -41,6 +42,7 @@ const AdminHome = () => {
 
   return (
     <div className="p-6 min-h-screen text-primary-text">
+      <ReactHelmet helmetText={'Admin || Home'}/>
       <h1 className="text-3xl font-bold mb-6 text-secondary-color">Admin Dashboard</h1>
 
       {/* Stats Section */}

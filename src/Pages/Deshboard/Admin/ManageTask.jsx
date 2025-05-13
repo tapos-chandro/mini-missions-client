@@ -12,7 +12,6 @@ const ManageTask = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
-    console.log(tasks)
 
     const handleDeleteTask = async (id) => {
 

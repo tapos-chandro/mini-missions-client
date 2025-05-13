@@ -6,6 +6,7 @@ import useUserData from "../../../Hooks/useUserData";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../../Hooks/useAuth";
+import ReactHelmet from "../../../components/ReactHelmet";
 
 
 const AddTask = () => {
@@ -32,7 +33,7 @@ const AddTask = () => {
     const onSubmit = async (data) => {
         const amount = Number(data?.required_workers) * Number(data?.payable_amount);
 
-        const addTaskData = {...data, image:uploadImageUrl, email: user?.email, buyer_name: user?.displayName}
+        const addTaskData = {...data, image:uploadImageUrl, email: user?.email, buyer_name: user?.displayName, buyer_image: user?.photoURL}
 
         if (amount > userData.coins) {
             Swal.fire({
@@ -96,6 +97,7 @@ const AddTask = () => {
 
     return (
         <div>
+            <ReactHelmet helmetText={"Buyer || Add Task"}/>
 
             <div className="lg:card-body">
                 <h2 className="text-center font-bold text-2xl text-secondary-color">Add New Task</h2>

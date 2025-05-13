@@ -3,6 +3,7 @@ import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
 import Loading from '../../../components/Loading';
+import ReactHelmet from '../../../components/ReactHelmet';
 
 
 
@@ -39,14 +40,12 @@ const WorkerHome = () => {
         return <Loading></Loading>
     }
 
-
-    // console.log(approvedSubmissions.data)
     const approvedSortData = approvedSubmissions?.data?.sort((a, b) =>new Date(b.current_date)  - new Date(a.current_date))
-    // console.log(approvedSortData, 'slflssssssssssssssssssssssssssssssssssssssssssss')
 
 
     return (
         <div className="p-6 max-w-7xl mx-auto">
+            <ReactHelmet helmetText={"Worker || Home"}/>
             {/* Stats Section */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
                 <div className="bg-white p-6 rounded-lg shadow text-center">

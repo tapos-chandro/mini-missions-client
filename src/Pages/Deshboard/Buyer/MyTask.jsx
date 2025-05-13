@@ -5,75 +5,83 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import Loading from "../../../components/Loading";
+import ReactHelmet from "../../../components/ReactHelmet";
 
 
 const MyTask = () => {
 
     const axiosSecure = useAxiosSecure();
-    const {user} = useAuth()
-    const [taskData, setTaskData]  = useState({})
+    const { user } = useAuth()
+    const [taskData, setTaskData] = useState({})
     const { register, handleSubmit, setValue } = useForm()
 
 
-    const {data:tasksData, refetch, isLoading} = useQuery({
+    const { data: tasksData, refetch, isLoading } = useQuery({
         queryKey: ['tasksData', user?.email],
         queryFn: async () => {
             const res = await axiosSecure.get(`/tasks?email=${user?.email}`)
             return res.data;
         }
-    }) 
+    })
 
-    console.log(taskData)
 
-    if(isLoading){
+    if (isLoading) {
         return <Loading></Loading>
     }
 
 
-    const onSubmit = async (data) =>{
-        if(!data){
-            
-            return 
+    const onSubmit = async (data) => {
+        if (!data) {
+
+            return
         }
-        const updateMyTaskData = {...data}
+        const updateMyTaskData = { ...data }
         const res = await axiosSecure.patch(`/update-task?id=${taskData?._id}`, updateMyTaskData)
-        if(res?.data?.modifiedCount> 0){
+        if (res?.data?.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
                 title: "Your work has been saved",
                 showConfirmButton: false,
                 timer: 1500
-              });
-              refetch()
-              document.getElementById('my_modal_3').close()
+            });
+            refetch()
+            document.getElementById('my_modal_3').close()
         }
 
     }
 
 
-
-
-
-
-
     const handleUpdate = (id) => {
         const findTask = tasksData.find(task => task._id === id)
         setTaskData(findTask)
-        setValue('task_title', findTask?.task_title )
-        setValue('task_detail', findTask?.task_detail )
-        setValue('submission_info', findTask?.submission_info )
+        setValue('task_title', findTask?.task_title)
+        setValue('task_detail', findTask?.task_detail)
+        setValue('submission_info', findTask?.submission_info)
         document.getElementById('my_modal_3').showModal()
     }
 
+    const handleDelate = async (id) => {
+        const res = await axiosSecure.delete(`/task-delete?id=${id}`)
+        if (res?.data?.deletedCount > 0) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your task deleted successfully",
+                showConfirmButton: false,
+                timer: 1500
+            });
 
-    
+         await   refetch();
+        }
 
+    }
 
     return (
         <div className="p-4 sm:p-6 max-w-7xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center text-secondary-color">Your Tasks</h2>
 
+            <h2 className="text-2xl sm:text-3xl font-semibold mb-6 text-center text-secondary-color">Your Tasks</h2>
+            <ReactHelmet helmetText={"Buyer || My Task"}></ReactHelmet>
             <div className="overflow-x-auto bg-white shadow-md rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 overflow-x-scroll">
                     <thead className="bg-primary-color">
@@ -91,10 +99,10 @@ const MyTask = () => {
                                 <td className="px-4 py-3 text-center whitespace-normal">{task?.task_detail}</td>
                                 <td className="px-4 py-3 text-center">{task?.submission_info}</td>
                                 <td className="px-4 py-3 flex justify-center text-center space-x-2 ">
-                                    <button  className="px-3 py-1 hover:cursor-pointer bg-primary-color text-white rounded text-sm" onClick={() => { handleUpdate(task?._id)}}>
+                                    <button className="px-3 py-1 hover:cursor-pointer bg-primary-color text-white rounded text-sm" onClick={() => { handleUpdate(task?._id) }}>
                                         Update
                                     </button>
-                                    <button className="px-3 py-1 hover:cursor-pointer bg-red-500 text-white rounded hover:bg-red-600 text-sm">
+                                    <button onClick={() => handleDelate(task?._id)} className="px-3 py-1 hover:cursor-pointer bg-red-500 text-white rounded hover:bg-red-600 text-sm">
                                         Delete
                                     </button>
                                 </td>
@@ -127,21 +135,21 @@ const MyTask = () => {
                                 <label className="block mb-1 text-sm font-medium">Title</label>
                                 <input
                                     type="text"
-                                    {...register('task_title', {required: true})}
+                                    {...register('task_title', { required: true })}
                                     className="w-full border border-gray-300 focus:border-1 outline-none focus:border-primary-color rounded p-2"
                                 />
                             </div>
                             <div>
                                 <label className="block mb-1 text-sm font-medium">Task Detail</label>
                                 <textarea
-                                {...register('task_detail', {required:true})}
+                                    {...register('task_detail', { required: true })}
                                     className="w-full border border-gray-300 focus:border-1 outline-none focus:border-primary-color rounded p-2"
                                 ></textarea>
                             </div>
                             <div>
                                 <label className="block mb-1 text-sm font-medium">Submission Details</label>
                                 <input
-                                {...register('submission_info', {required:true})}
+                                    {...register('submission_info', { required: true })}
                                     type="text"
                                     className="w-full border border-gray-300 focus:border-1 outline-none focus:border-primary-color rounded p-2"
                                 />

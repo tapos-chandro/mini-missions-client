@@ -3,6 +3,7 @@ import React from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
 import Loading from '../../../components/Loading';
+import ReactHelmet from '../../../components/ReactHelmet';
 
 const PaymentHistory = () => {
 
@@ -23,6 +24,7 @@ const PaymentHistory = () => {
     }
     return (
         <div className="overflow-x-auto">
+            <ReactHelmet helmetText={"Buyer || Payment History"} />
             <table className="table table-zebra min-w-full">
                 {/* head */}
                 <thead>

@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import EllipsisText from "react-ellipsis-text";
-import useAuth from '../Hooks/useAuth';
 
 const Card = ({ task }) => {
-  const { user } = useAuth();
-  const { _id, image, task_title, task_detail, buyer_name, payable_amount } = task;
+  const { _id, image, task_title, task_detail, buyer_name, payable_amount,buyer_image } = task;
 
   return (
     <div className="bg-white rounded-2xl shadow-md border border-gray-200 overflow-hidden hover:shadow-xl transition duration-300">
@@ -17,7 +15,7 @@ const Card = ({ task }) => {
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-primary-color">
-              <img src={user?.photoURL} alt="User" className="w-full h-full object-cover" />
+              <img src={buyer_image} alt="User" className="w-full h-full object-cover" />
             </div>
             <span className="font-semibold text-gray-800">{buyer_name}</span>
           </div>

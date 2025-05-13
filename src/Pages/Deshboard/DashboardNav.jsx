@@ -16,7 +16,7 @@ const DashboardNav = () => {
     const axiosSecure = useAxiosSecure();
 
 
-    const { data: notifications, isLoading, refetch } = useQuery({
+    const { data: notifications, refetch } = useQuery({
         queryKey: ['notification'],
         queryFn: async () => {
             const res = await axiosSecure(`/notification?email=${user.email}`)
@@ -72,19 +72,13 @@ const DashboardNav = () => {
                     <div className='md:block lg:block hidden'>
                         <div className="flex gap-5 ">
                             <div>
-                                <div className='flex gap-3 text-sm font-medium text-secondary-color items-center'>Available coin : {userData?.coins} <img className='W-14 h-14 rounded-full' src={user?.photoURL} /> </div>
+                                <div className='flex gap-3 text-sm font-medium text-secondary-color items-center'>Available coin : {userData?.coins} <div className=' w-12'><img className='W-12 ring-1 ring-primary-color h-12 rounded-full object-cover ' src={user?.photoURL} /></div> </div>
                                 <div className='flex gap-3 text-sm font-medium text-secondary-color items-center capitalize'>{userData?.role} |  {user?.displayName} </div>
                             </div>
                             <div className='flex items-center mr-5 relative'>
                                 <IoNotifications className='text-4xl  cursor-pointer z-50 text-secondary-color' onClick={handleNotification} />
-                                {/* notifications modal  */}
-                                {/* <div className='border-[20px] p-5 '> */}
-                                    <div ref={popupRef} className={`rounded-2xl  h-96 overflow-scroll min-w-sm  p-5 bg-light border border-primary-color  text-secondary-color absolute top-24 right-0 z-50 ${isModal ? "block" : "hidden"}`} >
-
-
-                                        {notificationsDetails}
-                                    {/* </div> */}
-
+                                <div ref={popupRef} className={`rounded-2xl  h-96 overflow-scroll min-w-sm  p-5 bg-light border border-primary-color  text-secondary-color absolute top-24 right-0 z-50 ${isModal ? "block" : "hidden"}`} >
+                                    {notificationsDetails}
                                 </div>
                             </div>
                         </div>

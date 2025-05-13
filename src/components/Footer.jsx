@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaFacebookF, FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
 import footerLogo from '../../src/assets/images/logo-2.png'
@@ -22,15 +21,13 @@ const Footer = () => {
                 <div className='flex lg:flex-row flex-wrap my-10 flex-col justify-center'>
                     <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/'}>Home</NavLink>
                     <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/dashboard'}>Dashboard</NavLink>
-                    <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/coin'}>Available Coin </NavLink>
-
                     {
                         user ? "" : <>
                             <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/login'}>Login</NavLink>
                             <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'/register'}>Register</NavLink>
                         </>
                     }
-                    <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-tapos-chandro.git'} target="_blank">Join as Developer</NavLink>
+                    <NavLink className=" bg-transparent border-none hover:border lg:text-md  btn m-2 text-primary-text rounded-full px-6" to={'https://github.com/tapos-chandro'} target="_blank">Join as Developer</NavLink>
                 </div>
 
                 {/* Social Icons */}

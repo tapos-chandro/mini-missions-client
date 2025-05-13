@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
                 setUser(currentUser)
                 setLoading(false)
                 const email = currentUser?.email
-                const res = await axios.post('http://localhost:5000/jwt', { email })
+                const res = await axios.post('https://mini-mission-server.vercel.app/jwt', { email })
                 const token = res?.data?.token
                 localStorage.setItem('access-token', token)
             } else {

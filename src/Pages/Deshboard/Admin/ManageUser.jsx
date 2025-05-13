@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { useQueries} from "@tanstack/react-query";
 import useAuth from "../../../Hooks/useAuth";
 import Loading from "../../../components/Loading";
 import Swal from "sweetalert2";
@@ -12,13 +12,11 @@ const ManageUser = () => {
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
 
-    console.log(role, userId, 'select value')
 
-
-    const [allUser, updateUserRole, isLoading,] = useQueries({
+    const [allUser, isLoading,] = useQueries({
         queries: [
             {
-                queryKey: ["allUser"],
+                queryKey: ["allUser", user?.email],
                 queryFn: async () => {
                     const res = await axiosSecure.get(`/all-user?email=${user?.email}`);
                     return res.data
@@ -28,7 +26,7 @@ const ManageUser = () => {
             {
                 queryKey: ["updateUserRole", userId, role],
                 queryFn: async () => {
-                    const res = await axiosSecure.patch(`/update-role?email=${user?.email}&&id=${userId}`, { role });
+                    const res = await axiosSecure.patch(`/update-role?email=${user?.email}&id=${userId}`, { role });
                     return res.data
 
                 }
@@ -37,9 +35,9 @@ const ManageUser = () => {
 
     })
 
-    if (isLoading) {
-        return <Loading></Loading>
-    }
+    // if (isLoading) {
+    //     return <Loading></Loading>
+    // }
 
     const handleRemoveUser = async (id) => {
 
@@ -54,13 +52,13 @@ const ManageUser = () => {
             }).then(async (result) => {
                 if (result.isConfirmed) {
                     const res = await axiosSecure.delete(`/user-delete?id=${id}`)
-                    console.log(res.data)
                     if (res.data?.deletedCount > 0) {
                         Swal.fire({
                             title: "Deleted Successfully",
                             text: "Your file has been deleted.",
                             icon: "success"
                         });
+                       await  allUser.refetch()
                     }
                 }
             });

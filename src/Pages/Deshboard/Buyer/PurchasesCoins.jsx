@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import usePackages from '../../../Hooks/usePackages';
 import Loading from '../../../components/Loading';
+import ReactHelmet from '../../../components/ReactHelmet';
 
 
 const PurchaseCoins = () => {
@@ -16,6 +17,7 @@ const PurchaseCoins = () => {
 
     return (
         <div className="py-14 px-6">
+            <ReactHelmet helmetText={"Buyer || Purchases Coins"}/>
             <div className="mx-auto">
                 <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
                     Select a Coin Package

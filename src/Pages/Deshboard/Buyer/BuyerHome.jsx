@@ -3,6 +3,7 @@ import { useState } from 'react';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import useAuth from '../../../Hooks/useAuth';
 import Swal from 'sweetalert2';
+import ReactHelmet from '../../../components/ReactHelmet';
 
 const BuyerHome = () => {
   // Static mock data
@@ -10,7 +11,7 @@ const BuyerHome = () => {
   const { user } = useAuth();
 
 
-  const [buyerStates, submissionsReview, refetch] = useQueries({
+  const [buyerStates, submissionsReview] = useQueries({
     queries: [
       {
         queryKey: ['buyerStates'],
@@ -43,14 +44,6 @@ const BuyerHome = () => {
       buyer_email: findSubmission?.Buyer_email
     }
 
-    const notificationData = {
-      payable_amount: findSubmission?.payable_amount,
-      Buyer_name : findSubmission?.Buyer_name,
-      worker_email: findSubmission?.worker_email,
-      status: "approved",
-      time: new Date()
-    }
-
     const res = await axiosSecure.patch(`/approved-submission?id=${id}`, findSubmissionData)
     if (res?.data?.matchedCount > 0) {
       Swal.fire({
@@ -68,8 +61,23 @@ const BuyerHome = () => {
 
   };
 
-  const handleReject = (id) => {
+  const handleReject = async (id) => {
 
+    const res = await axiosSecure.delete(`/submission-reject?id=${id}`)
+    if (res.data.deletedCount > 0) {
+
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Successfully Submission Rejected",
+        showConfirmButton: false,
+        timer: 1500
+      });
+
+      await buyerStates.refetch();
+      await submissionsReview.refetch();
+    }
 
   };
 
@@ -86,10 +94,10 @@ const BuyerHome = () => {
 
   }
 
-  console.log(buyerStates?.data)
 
   return (
     <div className="max-w-6xl mx-auto p-6 space-y-8">
+      <ReactHelmet helmetText={"Buyer || Home"} />
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="card bg-primary-color text-light shadow-md p-4 text-center ">

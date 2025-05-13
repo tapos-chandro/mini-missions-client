@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import ReactHelmet from '../../../components/ReactHelmet';
 
 const TaskList = () => {
     const navigate = useNavigate();
@@ -18,6 +19,7 @@ const TaskList = () => {
 
     return (
         <div className="py-10 px-4 max-w-7xl mx-auto">
+            <ReactHelmet helmetText={"Worker || Task List"}/>
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
                 Available Tasks
             </h2>

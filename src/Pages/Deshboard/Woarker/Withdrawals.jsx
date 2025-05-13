@@ -6,6 +6,7 @@ import PhoneInput from 'react-phone-number-input';
 import 'react-phone-number-input/style.css';
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import ReactHelmet from "../../../components/ReactHelmet";
 // import PhoneInput from 'react-phone-number-input/react-hook-form-input';
 
 
@@ -71,6 +72,7 @@ const Withdrawals = () => {
 
     return (
         <div className="py-10">
+            <ReactHelmet helmetText={"Worker || Withdrawals"} />
             <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md border border-primary-color ">
                 <h2 className="text-2xl font-bold mb-4 text-primary-color py-2">Withdrawal Form</h2>
 

@@ -7,10 +7,10 @@ import useUserData from "../Hooks/useUserData";
 const AdminRoutes = ({ children }) => {
     const { user, loading } = useAuth();
     const location = useLocation();
-    const {userData} = useUserData();
+    const {userData, isLoading} = useUserData();
 
 
-    if (loading) {
+    if (loading || isLoading) {
         return <Loading></Loading>
     }
 

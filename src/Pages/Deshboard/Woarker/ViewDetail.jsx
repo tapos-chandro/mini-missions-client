@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import React, { useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import {  useNavigate, useParams } from 'react-router-dom';
 import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 import Loading from '../../../components/Loading';
 import useAuth from '../../../Hooks/useAuth';
+import ReactHelmet from '../../../components/ReactHelmet';
 
 const ViewDetail = () => {
 
@@ -54,7 +54,6 @@ const ViewDetail = () => {
             setLoading(true);
             setMessage('')
           const res =   await axiosSecure.post('/submission', submission);
-          console.log(res)
           if(res.data.insertedId){
             navigate('/dashboard/my-submissions')
 
@@ -73,6 +72,7 @@ const ViewDetail = () => {
 
     return (
         <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-xl pt-10">
+            <ReactHelmet helmetText={"Worker || View detail"}/>
             <h2 className="text-3xl font-bold mb-4 text-secondary-color">{task?.task_title}</h2>
             <p className="mb-2 text-secondary-text"><strong className='text-secondary-color'>Description:</strong> {task?.task_detail}</p>
             <p className="mb-2 text-secondary-text"><strong className='text-secondary-color'>Payable Amount: </strong>{task?.payable_amount} Coins</p>

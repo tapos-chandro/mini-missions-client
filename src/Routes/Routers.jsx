@@ -21,6 +21,7 @@ import Withdrawals from "../Pages/Deshboard/Woarker/Withdrawals";
 import Payment from "../Pages/Payment/Payment";
 import ViewDetail from "../Pages/Deshboard/Woarker/ViewDetail";
 import AdminRoutes from "./AdminRoutes";
+import NotFoundPage from "../components/NotFoundPage";
 
 
 
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
-        errorElement: <p>Loading</p>,
+        errorElement:<NotFoundPage></NotFoundPage>,
         children: [
             {
                 path: "/",
@@ -42,10 +43,6 @@ const router = createBrowserRouter([
                 path: '/profile',
                 element: <Profile />
             },
-            // {
-            //     path: 'purchase-coins',
-            //     element: <PrivetRoutes><PurchaseCoins></PurchaseCoins></PrivetRoutes>
-            // },
             {
                 path: 'payment/:id',
                 element: <PrivetRoutes><Payment></Payment></PrivetRoutes>
