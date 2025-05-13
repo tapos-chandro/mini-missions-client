@@ -13,7 +13,7 @@ const ManageUser = () => {
     const { user } = useAuth();
 
 
-    const [allUser, isLoading,] = useQueries({
+    const [allUser,] = useQueries({
         queries: [
             {
                 queryKey: ["allUser", user?.email],
